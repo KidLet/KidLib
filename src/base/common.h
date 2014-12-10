@@ -3,13 +3,13 @@
 
 #include <string>
 #include <sstream>
+#include "String.h"
 
 //only support gcc
 #define auto(name, ...) typeof(__VA_ARGS__) name((__VA_ARGS__))  
 
 namespace kid
 {
-    
     template<typename T>
     std::string tostr(const T& type)
     {
@@ -36,7 +36,7 @@ namespace kid
         return temp;
     }
 
-    std::string Fmt(const char* pFormat, ...);
 }
+
 
 #endif
