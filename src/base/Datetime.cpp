@@ -1,7 +1,7 @@
 #include "Datetime.h"
 #include <sys/time.h>
 
-string kid::tm2str(const time_t &t, const string& sFormat)
+string kid::tm2str(const string& sFormat, const time_t &t)
 {
     char sTime[128];
     struct tm stTm;
@@ -17,8 +17,7 @@ int64_t kid::getNow()
     struct timeval stTv;
 
     ::gettimeofday(&stTv, NULL);
-    int64_t iSeconds = stTv.tv_sec;
-    return iSeconds;
+    return stTv.tv_sec;
 }
 
 int64_t kid::getNowMs()
