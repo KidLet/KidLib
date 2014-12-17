@@ -12,6 +12,7 @@ namespace kid
     int64_t getNow();
     int64_t getNowMs();
     string tm2str(const string& sFormat = "%Y%m%d", const time_t &t = getNow());
+    time_t str2tm(const string& sDate, const string& sFormat = "%Y%m%d");
 }
 
 #endif

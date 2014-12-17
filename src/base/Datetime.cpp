@@ -12,6 +12,17 @@ string kid::tm2str(const string& sFormat, const time_t &t)
     return sTime;
 }
 
+time_t kid::str2tm(const string& sDate, const string& sFormat)
+{
+    struct tm stTm;
+    memset(&stTm, 0, sizeof(struct tm)); //must be
+    char *p = strptime(sDate.c_str(), sFormat.c_str(), &stTm);
+    if(p != NULL)
+        return mktime(&stTm);
+    else 
+        return 0;
+}
+
 int64_t kid::getNow()
 {
     struct timeval stTv;
