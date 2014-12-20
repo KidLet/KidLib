@@ -1,5 +1,6 @@
 #include "Kid/common.h"
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
 using namespace kid;
@@ -13,5 +14,6 @@ int main()
     cout << strto<int>(tostr(12345)) << endl;
 
     cout << Fmt("%d %s", 1991, "huang") << endl;
+
     return 0;
 }

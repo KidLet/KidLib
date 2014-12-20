@@ -3,13 +3,16 @@
 
 #include <string>
 #include <sstream>
+#include "String.h"
+#include "Datetime.h"
 
 //only support gcc
 #define auto(name, ...) typeof(__VA_ARGS__) name((__VA_ARGS__))  
 
 namespace kid
 {
-    
+    typedef unsigned int uin;
+
     template<typename T>
     std::string tostr(const T& type)
     {
@@ -36,7 +39,7 @@ namespace kid
         return temp;
     }
 
-    std::string Fmt(const char* pFormat, ...);
 }
+
 
 #endif

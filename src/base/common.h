@@ -11,6 +11,8 @@
 
 namespace kid
 {
+    typedef unsigned int uint;
+
     template<typename T>
     std::string tostr(const T& type)
     {
