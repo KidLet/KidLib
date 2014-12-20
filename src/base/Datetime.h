@@ -2,6 +2,7 @@
 #define __KIDLIB_DATETIME_H__
 
 #include "common.h"
+#include "stdint.h"
 using namespace std;
 
 #define NOW kid::getNow()

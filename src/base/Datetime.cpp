@@ -1,4 +1,5 @@
 #include "Datetime.h"
+#include <cstring>
 #include <sys/time.h>
 
 string kid::tm2str(const string& sFormat, const time_t &t)
@@ -15,7 +16,7 @@ string kid::tm2str(const string& sFormat, const time_t &t)
 time_t kid::str2tm(const string& sDate, const string& sFormat)
 {
     struct tm stTm;
-    memset(&stTm, 0, sizeof(struct tm)); //must be
+    ::memset(&stTm, 0, sizeof(struct tm)); //must be
     char *p = strptime(sDate.c_str(), sFormat.c_str(), &stTm);
     if(p != NULL)
         return mktime(&stTm);
