@@ -39,6 +39,19 @@ namespace kid
         return temp;
     }
 
+    // support the derivation of param template
+    template<typename T>
+    T strto(const std::string& str, T& result)
+    {
+        static std::stringstream stream;
+
+        stream.clear();
+        stream.str("");
+        stream << str;
+        stream >> result;
+
+        return result;
+    }
 }
 
 
