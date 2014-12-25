@@ -3,6 +3,8 @@
 
 #include <string>
 #include <sstream>
+#include <typeinfo>
+#include <stdexcept>
 #include "String.h"
 #include "Datetime.h"
 
@@ -28,15 +30,18 @@ namespace kid
     template<typename T>
     T strto(const std::string& str)
     {
-        static std::stringstream stream;
+        using namespace std;
+        static stringstream stream;
         T temp; //performance problem
 
         stream.clear();
         stream.str("");
         stream << str;
-        stream >> temp;
+        if(stream >> temp)
+            return temp;
 
-        return temp;
+        throw logic_error(string("Convert to ") + string(typeid(temp).name()) + string(" Error"));
+        //throw std::exception(string("Convert to") + string("Error"));
     }
 
     // support the derivation of param template

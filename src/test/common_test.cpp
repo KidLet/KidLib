@@ -12,6 +12,7 @@ int main()
 
     cout << tostr(12345) << endl;
     cout << strto<int>(tostr(12345)) << endl;
+    cout << strto<int>("a12a") << endl;
 
     cout << Fmt("%d %s", 1991, "huang") << endl;
 
