@@ -2,41 +2,54 @@
 #include <cstring>
 #include <sys/time.h>
 
-string kid::tm2str(const string& sFormat, const time_t &t)
+using namespace std;
+using namespace kid;
+
+string kid::tm2str(const time_t &t, const string& format)
 {
-    char sTime[128];
-    struct tm stTm;
+    char time_buf[128];
+    struct tm timeinfo;
 
-    localtime_r(&t, &stTm);
-    strftime(sTime, sizeof(sTime), sFormat.c_str(), &stTm);
+    localtime_r(&t, &timeinfo);
+    strftime(time_buf, sizeof(time_buf), format.c_str(), &timeinfo);
 
-    return sTime;
+    return time_buf;
 }
 
-time_t kid::str2tm(const string& sDate, const string& sFormat)
+time_t kid::str2tm(const string& str_date, const string& format)
 {
-    struct tm stTm;
-    ::memset(&stTm, 0, sizeof(struct tm)); //must be
-    char *p = strptime(sDate.c_str(), sFormat.c_str(), &stTm);
-    if(p != NULL)
-        return mktime(&stTm);
+    struct tm timeinfo;
+
+    ::memset(&timeinfo, 0, sizeof(struct tm)); //must be
+    if(strptime(str_date.c_str(), format.c_str(), &timeinfo) != NULL)
+    {
+        return mktime(&timeinfo);
+    }
     else 
+    {
+        //TODO throw a exception ?
         return 0;
+    }
 }
 
-int64_t kid::getNow()
+string tm2str(const std::string& format = "%Y%m%d")
 {
-    struct timeval stTv;
-
-    ::gettimeofday(&stTv, NULL);
-    return stTv.tv_sec;
+    return tm2str(GetNow(), format);
 }
 
-int64_t kid::getNowMs()
+int64_t kid::GetNow()
 {
-    struct timeval stTv;
+    struct timeval tv;
 
-    ::gettimeofday(&stTv, NULL);
-    return (stTv.tv_sec) * 1000 + (stTv.tv_usec / 1000);
+    ::gettimeofday(&tv, NULL);
+    return tv.tv_sec;
+}
+
+int64_t kid::GetNowMs()
+{
+    struct timeval tv;
+
+    ::gettimeofday(&tv, NULL);
+    return (tv.tv_sec) * 1000 + (tv.tv_usec / 1000);
 }
 

@@ -8,14 +8,19 @@ using namespace kid;
 
 int main()
 {
-    string str = "         \r\n\r\n    \r  ";
+    string str = "         \rb\n\r\n    \r  ";
 
     cout << trim(str) << endl;
     cout << trim(str).length() << endl;
 
-    string a[] = {"a", "b", "c"};
+    string test = "|hu|";
+    vector<string> vec = split(test, "|", false);
 
-    cout << a[0] << endl;
+    cout << "size:" << vec.size() << endl;
+    for(size_t i=0; i<vec.size(); i++)
+        cout << vec[i] << " ";
+    cout << endl;
+
 
     return 0;
 }

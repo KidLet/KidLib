@@ -16,7 +16,7 @@ LIB				=  -lpthread -L./../../lib/ -lkid
 all: $(EXE)
 
 
-%.test: %.o 
+%.test: %.o ../../lib/libkid.a 
 #	@echo $(filter-out %main.o, $(patsubst %.cpp, %.o, $(wildcard ./../src/*.cpp)))
 #	@echo $(patsubst %.cpp, %.o, $(wildcard ./../src/*.cpp))
 	$(CXX) $^ -o $@ $(INCLUDE) $(LIB_DIR) $(LIB)

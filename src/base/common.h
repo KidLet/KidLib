@@ -5,6 +5,8 @@
 #include <sstream>
 #include "kstring.h"
 #include "datetime.h"
+#include <typeinfo>
+#include <stdexcept>
 
 //only support gcc
 #define auto(name, ...) typeof(__VA_ARGS__) name((__VA_ARGS__))  
