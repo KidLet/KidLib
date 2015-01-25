@@ -3,10 +3,8 @@
 
 #include <string>
 #include <sstream>
-#include <typeinfo>
-#include <stdexcept>
-#include "String.h"
-#include "Datetime.h"
+#include "kstring.h"
+#include "datetime.h"
 
 //only support gcc
 #define auto(name, ...) typeof(__VA_ARGS__) name((__VA_ARGS__))  
