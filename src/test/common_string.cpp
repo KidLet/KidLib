@@ -21,6 +21,8 @@ int main()
         cout << vec[i] << " ";
     cout << endl;
 
+    char p[][10] = {"|", ","};
+    split(test, );
 
     return 0;
 }
