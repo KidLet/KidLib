@@ -18,12 +18,9 @@ namespace kid
     template<typename T>
     std::string tostr(const T& type)
     {
-        static std::ostringstream ostream;
+        std::ostringstream ostream;
 
-        ostream.clear();
-        ostream.str("");
         ostream << type;
-
         return ostream.str();
     }
 
@@ -31,11 +28,9 @@ namespace kid
     T strto(const std::string& str)
     {
         using namespace std;
-        static stringstream stream;
+        stringstream stream;
         T temp; //performance problem
 
-        stream.clear();
-        stream.str("");
         stream << str;
         if(stream >> temp)
             return temp;
@@ -48,10 +43,8 @@ namespace kid
     template<typename T>
     T strto(const std::string& str, T& result)
     {
-        static std::stringstream stream;
+        std::stringstream stream;
 
-        stream.clear();
-        stream.str("");
         stream << str;
         stream >> result;
 

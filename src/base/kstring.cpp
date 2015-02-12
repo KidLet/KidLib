@@ -10,7 +10,7 @@ using namespace kid;
 namespace kid
 {
 
-string fmt(const char* format, ...)
+string Fmt(const char* format, ...)
 {
     assert(format != NULL);
 
@@ -25,7 +25,7 @@ string fmt(const char* format, ...)
     return string(buf);
 }
 
-string trim(const string& src, const string& charlist)
+string Trim(const string& src, const string& charlist)
 {
     size_t left = 0;
     size_t right = src.length() - 1;
@@ -39,7 +39,7 @@ string trim(const string& src, const string& charlist)
     return src.substr(left, right - left + 1);
 }
 
-vector<string> split(const string& src, const string& delimiter, bool with_empty)
+vector<string> Split(const string& src, const string& delimiter, bool with_empty)
 {
     vector<string> result;
     size_t current_pos = 0;
@@ -52,7 +52,7 @@ vector<string> split(const string& src, const string& delimiter, bool with_empty
         if(with_empty || (with_empty == false && 
                             (next_pos == string::npos || next_pos - current_pos > 1)))
         {
-            result.push_back(current_pos == next_pos ? "" :substring(src, current_pos, next_pos - 1));
+            result.push_back(current_pos == next_pos ? "" :SubString(src, current_pos, next_pos - 1));
         }
 
         if(next_pos == string::npos)
@@ -79,7 +79,7 @@ vector<string> split(const string& src, const string& delimiter, bool with_empty
     return result;
 }
 
-vector<string> split(const string& src, const char array_delimiter[][128], bool with_empty)
+vector<string> Split(const string& src, const char array_delimiter[][128], bool with_empty)
 {
     vector<string> result;
     size_t array_count = sizeof(array_delimiter)/sizeof(array_delimiter[0]);
@@ -93,7 +93,7 @@ vector<string> split(const string& src, const char array_delimiter[][128], bool 
     return result;
 }
 
-vector<string> split(const string& src, const vector<string>& array_delimiter, bool with_empty)
+vector<string> Split(const string& src, const vector<string>& array_delimiter, bool with_empty)
 {
     vector<string> result;
     size_t current_pos = 0;
@@ -116,7 +116,7 @@ vector<string> split(const string& src, const vector<string>& array_delimiter, b
         if(with_empty || (with_empty == false && 
                             (next_pos == string::npos || next_pos - current_pos > 1)))
         {
-            result.push_back(current_pos == next_pos ? "" :substring(src, current_pos, next_pos - 1));
+            result.push_back(current_pos == next_pos ? "" :SubString(src, current_pos, next_pos - 1));
         }
 
         if(next_pos == string::npos)
@@ -134,7 +134,7 @@ vector<string> split(const string& src, const vector<string>& array_delimiter, b
 
     }
 
-    if(result.empty())
+    if(result.empty() && next_pos == string::npos)
     {
         result.push_back(src);
     }
@@ -143,7 +143,7 @@ vector<string> split(const string& src, const vector<string>& array_delimiter, b
     return result;
 }
 
-string substring(const string& src, size_t begin_index, size_t end_index)
+string SubString(const string& src, size_t begin_index, size_t end_index)
 {
     end_index = (end_index >= src.size()) ? src.size() : end_index;
 
@@ -155,10 +155,21 @@ string substring(const string& src, size_t begin_index, size_t end_index)
     return src.substr(begin_index, end_index - begin_index + 1);
 }
 
-string substring(const string& src, size_t begin_index)
+string SubString(const string& src, size_t begin_index)
 {
-    return substring(src, begin_index, src.size() - 1);
+    return SubString(src, begin_index, src.size() - 1);
 }
 
 
+bool StartsWith(const string& src, const string& prefix, size_t offset)
+{
+    return (src.find_first_of(prefix, offset) == offset);
 }
+
+bool EndsWith(const std::string& src, const std::string& prefix)
+{
+    return StartsWith(src, prefix, src.size() - prefix.size());
+}
+
+}// kid namespace end
+
