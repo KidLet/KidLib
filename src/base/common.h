@@ -8,6 +8,14 @@
 #include <typeinfo>
 #include <stdexcept>
 
+//auto load smartpointer
+#if(__cplusplus < 201103L)
+    #include <tr1/memory>  
+    using namespace std::tr1;
+#else
+    #include <memory>  
+#endif
+
 //only support gcc
 #define auto(name, ...) typeof(__VA_ARGS__) name((__VA_ARGS__))  
 
@@ -36,7 +44,6 @@ namespace kid
             return temp;
 
         throw logic_error(string("Convert to ") + string(typeid(temp).name()) + string(" Error"));
-        //throw std::exception(string("Convert to") + string("Error"));
     }
 
     // support the derivation of param template

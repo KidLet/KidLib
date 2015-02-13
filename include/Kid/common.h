@@ -3,10 +3,18 @@
 
 #include <string>
 #include <sstream>
+#include "kstring.h"
+#include "datetime.h"
 #include <typeinfo>
 #include <stdexcept>
-#include "String.h"
-#include "Datetime.h"
+
+//auto load smartpointer
+#if(__cplusplus < 201103L)
+    #include <tr1/memory>  
+    using namespace std::tr1;
+#else
+    #include <memory>  
+#endif
 
 //only support gcc
 #define auto(name, ...) typeof(__VA_ARGS__) name((__VA_ARGS__))  
@@ -18,12 +26,9 @@ namespace kid
     template<typename T>
     std::string tostr(const T& type)
     {
-        static std::ostringstream ostream;
+        std::ostringstream ostream;
 
-        ostream.clear();
-        ostream.str("");
         ostream << type;
-
         return ostream.str();
     }
 
@@ -31,27 +36,22 @@ namespace kid
     T strto(const std::string& str)
     {
         using namespace std;
-        static stringstream stream;
+        stringstream stream;
         T temp; //performance problem
 
-        stream.clear();
-        stream.str("");
         stream << str;
         if(stream >> temp)
             return temp;
 
         throw logic_error(string("Convert to ") + string(typeid(temp).name()) + string(" Error"));
-        //throw std::exception(string("Convert to") + string("Error"));
     }
 
     // support the derivation of param template
     template<typename T>
     T strto(const std::string& str, T& result)
     {
-        static std::stringstream stream;
+        std::stringstream stream;
 
-        stream.clear();
-        stream.str("");
         stream << str;
         stream >> result;
 

@@ -26,7 +26,8 @@ int main()
 
     cout << StartsWith("huangpeihonghuang", "pei", 4) << endl;
     cout << EndsWith("huangpeihonghuang1", "huang1") << endl;
-    cout << Join("i", " love", " you") << endl;
+    cout << Join("i", "love", "you") << endl;
+    cout << Joiner("|").Join("i", "love", "you") << endl;
 
 
     return 0;
