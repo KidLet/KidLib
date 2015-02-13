@@ -8,12 +8,13 @@
 #include <typeinfo>
 #include <stdexcept>
 
+
 //auto load smartpointer
 #if(__cplusplus < 201103L)
-    #include <tr1/memory>  
+    #include <tr1/memory>
     using namespace std::tr1;
 #else
-    #include <memory>  
+    #include <memory>
 #endif
 
 //only support gcc
